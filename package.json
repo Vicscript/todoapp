@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node public/app.js",
     "dev": "nodemon src/app.ts",
-    "bulid": "tsc -p ."
+    "bulid": "tsc -p .",
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "",
