@@ -4,7 +4,12 @@ import 'package:http/http.dart' as http;
 
 class TodoProvider extends ChangeNotifier {
   final httpClient = http.Client();
- late  List<dynamic> todoData;
+  List<dynamic> todoData = [];
+
+  Map<String, String> customHeaders = {
+    "Accept": "application/json",
+    "Content-Type": "application/json;charset=UTF-8"
+  };
 
   //GetRequest
   Future fetchData() async {
@@ -16,5 +21,17 @@ class TodoProvider extends ChangeNotifier {
     final Map parsedData = await json.decode(response.body.toString());
     todoData = parsedData['data'];
     print(todoData);
+  }
+
+  //PostRequest
+
+  Future addData(Map<String, String> body) async {
+    final Uri restApiURL =
+        Uri.parse("https://todoflutternodejs.herokuapp.com/add");
+
+    http.Response response = await httpClient.post(restApiURL,
+        headers: customHeaders, body: jsonEncode(body));
+//{'Content-Type': 'application/json'}
+    return response.body;
   }
 }

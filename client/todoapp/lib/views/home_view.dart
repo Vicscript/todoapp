@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/provider/todo_provider.dart';
+import 'package:todoapp/views/add_todo.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -19,6 +20,10 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => addDatawidget(context),
+        child: Icon(Icons.add),
+      ),
       appBar: AppBar(
         title: Text("Todo List"),
         centerTitle: true,
